@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Димон, идём бухать</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 60px 20px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+    button {
+      font-size: 24px;
+      padding: 16px 36px;
+      margin: 15px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .yes {
+      background-color: #4caf50;
+      color: white;
+    }
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    #response {
+      margin-top: 40px;
+      font-size: 26px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #response.visible {
+      opacity: 1;
+    }
+    .cheers {
+      font-size: 60px;
+      margin-top: 20px;
+      animation: shake 0.5s ease-in-out 1;
+    }
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(-15deg); }
+      50% { transform: rotate(15deg); }
+      75% { transform: rotate(-10deg); }
+      100% { transform: rotate(0deg); }
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Димон, идём бухать? 🍺</h1>
+
+  <button class="yes" onclick="respond('yes')">✅ Да</button>
+  <button class="no" onclick="respond('no')">❌ Нет</button>
+
+  <div id="response"></div>
+  <div id="cheers"></div>
+
+  <audio id="music">
+    <source src="leningrad-v-pitere-pit_(muzbig.club).mp3" type="audio/mpeg">
+    Твой браузер не поддерживает воспроизведение аудио.
+  </audio>
+
+  <script>
+    function respond(answer) {
+      const responseDiv = document.getElementById('response');
+      const cheersDiv = document.getElementById('cheers');
+      const audio = document.getElementById("music");
+
+      responseDiv.classList.add("visible");
+
+      if (answer === 'yes') {
+        responseDiv.innerText = '🥹 Обнять и плакать, ты лучший мужик на этом свете!';
+        cheersDiv.innerHTML = '🍻';
+        audio.play().catch(() => console.log("Музыка не воспроизвелась"));
+      } else {
+        responseDiv.innerText = '👎 Пидора ответ';
+        cheersDiv.innerHTML = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
